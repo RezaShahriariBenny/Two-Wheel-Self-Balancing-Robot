@@ -16,3 +16,7 @@ In the Third chapter a simulation based on the second configuaration which prove
 We make use of solid works 2023 to build our model of the robot. We First the plate, as we were able to download the mode of Arduino UNO and L298N -which are used in our project- from grabcad.com we designed our plates measurements based on that. Below there are two Pictures demonstring the measurements of the plate and the holes:
 
 ![](./resources/Designed_Model.png)
+
+And Below you see hole placement:
+
+![](./resources/Hole_Placement.png)
