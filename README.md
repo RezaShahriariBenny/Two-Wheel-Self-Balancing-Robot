@@ -53,11 +53,33 @@ DC motors are electric motors that run on direct current. In your project, these
 (--For More Info please download the project report from the repository)
 
 ## Phase/Chapter 3 :
-In this chapter , we implemented a simulation for our self balancing robot.
-We use solver configuration which solves the system and mechanism   configuration which I determined the gravity = G in +y direction.
-This configuration connects to prismatic joints which is the wheel models movements. And then after two rotations it will connects to our system.
-We use the rotations for having +y for gravity and Z axis for robot movement
-As it can be seen we have two subsystems contain of body and motors and the wheel part. The revolute joint before motor and body subsystem connects these to part. We control our system with a pid controller and tuning these variables with MATLAB tuner tool.
+In this chapter , we implemented a simulation for our self balancing robot with simulink and simulink tools.
+We use solver configuration which solves the system and mechanism   configuration which the gravity = G in +y direction is determined in it.
+This configuration connects to a prismatic joints which is the wheels movements. And then after two rotations with rigid transform tool, configurations will connect to our system.
+We use the rotations for having +y for gravity and Z axis for robot wheels movements.
+As it can be seen we have two subsystems contain of body and motors and the wheel part. The revolute joint before motor and body subsystem connects wheel part to body part and percieve this connection as a revolute joint. We control our system with a pid controller and tuning these variables with MATLAB tuner tool.
+
+![](./resources/simulink.png)
+
+- <strong>wheels</strong>:
+
+For wheels implementation we use two identical variable cylinder solid to represent our wheels and two rigid transform blocks for determining the location of the wheels.
+
+![](./resources/wheel_robot.png)
+
+- <strong>Body</strong>:
+
+In body and motors subsystem we implemented the two plates as two identical variable brick solid block and with rigid transform blocks we determine the location of the blocks. Moreover we implemented our four connecting screws as variable cylinders with diffrent location. also each motor is implemented as two connecting variable solid bricks. all of these forms the "body and motors" part which connect to wheels with a revolute joint
+In this part we inserted an external force to the upper plate as an step function which will intentionally unstablize our system.
+
+![](./resources/body_robot.png)
+
+- <strong>PID controller</strong>:
+For PID implementation first we determine the input and output of the controller. The input is the angle of the revolute joint(the angle between wheels and body) as radians which the gain -k- in the simulation converts degrees to radians.  The output is the force as (N) which will be applied to the prismatic joint(the movement of the wheel). we tune the PID block with MATLAB tuner block.
+
+![](./resources/pid_block.png)
+
+![](./resources/tuned_2.png)
 
 ![](./resources/Simulated.png)
 
